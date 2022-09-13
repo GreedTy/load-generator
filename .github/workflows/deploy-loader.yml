@@ -75,7 +75,7 @@ jobs:
           echo "Pushing image to ECR..."
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-        working-directory: 'self/${{ env.DIRECTORY }}/phr/dna/deploy'
+        working-directory: '${{ env.DIRECTORY }}/phr/dna/deploy'
 
       - name: Change argocd-deploy branch
         run: git checkout main
