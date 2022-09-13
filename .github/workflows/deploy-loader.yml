@@ -27,6 +27,19 @@ jobs:
       - name: Time Set!
         run: export TZ="UTC"
 
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: 'self'
+
+      - name: Checkout argocd deploy repository
+        uses: actions/checkout@v2
+        with:
+          repository: 'hb-commons/argocd-deploy'
+          token: ${{ secrets.ACTION_TOKEN }}
+          path: 'argocd-deploy'
+          fetch-depth: 0
+
       - name: Set outputs
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
