@@ -24,9 +24,6 @@ kind: Service
 metadata:
   name: service-{{ .Values.Common.MasterWebAdminName }}
   namespace: {{ .Values.Common.Namespace }}
-  annotation:
-    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
-    service.beta.kubernetes.io/aws-load-balancer-name: service-{{ .Values.Common.MasterWebAdminName }}
 spec:
   ports:
     - port: 80
@@ -34,5 +31,5 @@ spec:
       protocol: TCP
       name: service-{{ .Values.Common.MasterWebAdminName }}
   selector:
-    app.kubernetes.io/name: {{ .Values.Common.MasterGeneratorName }}
+    app.kubernetes.io/name: service-{{ .Values.Common.MasterGeneratorName }}
   type: LoadBalancer
