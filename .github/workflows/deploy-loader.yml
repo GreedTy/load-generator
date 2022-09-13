@@ -95,7 +95,7 @@ jobs:
           --set imageName=${{ steps.build-image.outputs.image }}
           --set deployEnv=${{ env.DEPLOY_ENV }}
           --set ddVersion=$VERSION
-          > ../../../../../argocd-deploy/${{ env.SERVICE_NAME }}/${{ env.DEPLOY_ENV }}/app.yaml
+          > ../../../../../../argocd-deploy/${{ env.SERVICE_NAME }}/${{ env.DEPLOY_ENV }}/app.yaml
         working-directory: 'self/${{ env.DIRECTORY }}/phr/dna/deploy/helm'
 
       - name: Push to the argocd-deploy repository
