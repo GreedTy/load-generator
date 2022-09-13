@@ -4,7 +4,7 @@ metadata:
   name: ingress-{{ .Values.Common.ServiceName }}
   namespace: {{ .Values.Common.NameSpace }}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /perf-admin/$2
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: {{ .Values.Ingress.IngressClassName }}
   defaultBackend:
@@ -15,7 +15,7 @@ spec:
   rules:
     - http:
         paths:
-          # locust-master
+          # locust-web
           - path: /perf-admin(/|$)(.*)
             pathType: Prefix
             backend:
@@ -23,11 +23,11 @@ spec:
                 name: service-{{ .Values.Common.MasterWebAdminName }}
                 port:
                   number: 80
-          # locust-master1, 2
-#          - path: /perf-master(/|$)(.*)
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: service-{{ .Values.Common.MasterGeneratorName }}
-#                port:
-#                  number: 80
+          # locust-master
+          - path: /perf-master(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: service-{{ .Values.Common.MasterGeneratorName }}
+                port:
+                  number: 80

@@ -5,14 +5,10 @@ metadata:
   namespace: {{ .Values.Common.Namespace }}
 spec:
   ports:
-    - port: 5557
-      targetPort: {{ .Values.Common.MasterPod1 }}
+    - port: 80
+      targetPort: 5557
       protocol: TCP
       name: {{ .Values.Common.MasterPod1 }}
-    - port: 5558
-      targetPort: {{ .Values.Common.MasterPod2 }}
-      protocol: TCP
-      name: {{ .Values.Common.MasterPod2 }}
   selector:
     app.kubernetes.io/name: {{ .Values.Common.MasterGeneratorName }}
   type: ClusterIP
@@ -31,5 +27,6 @@ spec:
       protocol: TCP
       name: service-{{ .Values.Common.MasterWebAdminName }}
   selector:
-    app.kubernetes.io/name: service-{{ .Values.Common.MasterGeneratorName }}
-  type: LoadBalancer
+    app.kubernetes.io/name: {{ .Values.Common.MasterGeneratorName }}
+  type: ClusterIP
+
