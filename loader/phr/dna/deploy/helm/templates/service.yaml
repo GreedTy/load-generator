@@ -8,7 +8,6 @@ spec:
     - port: 80
       targetPort: 5557
       protocol: TCP
-      name: {{ .Values.Common.MasterPod1 }}
   selector:
     app.kubernetes.io/name: {{ .Values.Common.MasterGeneratorName }}
   type: ClusterIP
@@ -25,8 +24,6 @@ spec:
     - port: 80
       targetPort: 8089
       protocol: TCP
-      name: service-{{ .Values.Common.MasterWebAdminName }}
   selector:
     app.kubernetes.io/name: {{ .Values.Common.MasterGeneratorName }}
   type: ClusterIP
-
