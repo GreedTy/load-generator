@@ -1,0 +1,26 @@
+deployEnv: dev
+deployVersion: v1.0.0
+
+Common:
+  ServiceName: load-generator
+  MasterGeneratorName: locust-master
+  MasterWebAdminName: locust-master-web
+  WorkerName: locust-worker
+  NameSpace: load-gen
+#  Datadog:
+#    UnifiedServiceTag: hb-phr.phr-dna
+
+Ingress:
+  IngressClassName: nginx-perf-locust-web
+
+Deployment:
+  MasterReplicas: 1
+  WorkerReplicas: 5
+
+resources:
+  requests:
+    memory: "768Mi"
+    cpu: "100m"
+
+  limits:
+    memory: "768Mi"

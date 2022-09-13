@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: {{ .Values.Common.NameSpace }}
+  name: configmap-worker
+data:
+  TARGET_HOST: aHR0cDovL2xiLXBlcmYtbG9jdXN0LXdlYi0wZTJiYTI1N2NmYzJmYjBmLmVsYi5hcC1ub3J0aGVhc3QtMi5hbWF6b25hd3MuY29tL2FyZ29jZC9wZXJmLWFkbWluCg==
+  LOCUST_MASTER: bG9jdXN0LW1hc3Rlcgo=
+  LOCUST_MODE: d29ya2VyCg==
