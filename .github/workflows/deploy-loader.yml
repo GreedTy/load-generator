@@ -67,7 +67,6 @@ jobs:
           IMAGE_TAG: ${{ env.DEPLOY_ENV }}-${{ steps.vars.outputs.sha_short }}-${{ steps.current-time.outputs.formattedTime }}
           DD_AGENT_VERSION: 0.93.0
         run: |
-          # wget -O dd-java-agent.jar https://dtdg.co/latest-java-tracer
           # Build a docker container and push it to ECR
           docker build \
             --build-arg DEPLOY_ENV \
