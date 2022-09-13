@@ -22,9 +22,9 @@ spec:
           ports:
             - name: {{ .Values.Common.MasterWebAdminName }}
               containerPort: 8089
-            - name: {{ .Values.Common.MasterGeneratorName }}
+            - name: {{ .Values.Common.MasterPod1 }}
               containerPort: 5557
-            - name: {{ .Values.Common.MasterGeneratorName }}
+            - name: {{ .Values.Common.MasterPod2 }}
               containerPort: 5558
           envFrom:
             - configMapRef:

@@ -4,6 +4,8 @@ deployVersion: v1.0.0
 Common:
   ServiceName: load-generator
   MasterGeneratorName: locust-master
+  MasterPod1: locust-master-1
+  MasterPod2: locust-master-2
   MasterWebAdminName: locust-master-web
   WorkerName: locust-worker
   NameSpace: load-gen
