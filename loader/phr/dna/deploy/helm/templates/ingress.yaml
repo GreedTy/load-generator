@@ -15,7 +15,7 @@ spec:
   rules:
     - http:
         paths:
-          # locust-qwv
+          # locust-master
           - path: /perf-admin(/|$)(.*)
             pathType: Prefix
             backend:
