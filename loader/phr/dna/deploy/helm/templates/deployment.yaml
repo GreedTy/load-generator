@@ -5,7 +5,7 @@ metadata:
   name: deployment-{{ .Values.Common.MasterGeneratorName }}
   namespace: {{ .Values.Common.Namespace }}
   labels:
-    app: { { .Values.Common.MasterGeneratorName } }
+    app: {{ .Values.Common.MasterGeneratorName }}
 spec:
   replicas: {{ .Values.Deployment.MasterReplicas }}
   selector:
