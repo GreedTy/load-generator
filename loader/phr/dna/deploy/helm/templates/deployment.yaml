@@ -20,44 +20,49 @@ spec:
         - name: {{ .Values.Common.MasterWebAdminName }}
           image: {{ .Values.imageName }}
           ports:
-            - name: locust-web
-              containerPort: 8089
-#            - name: {{ .Values.Common.MasterPod2 }}
-#              containerPort: 5558
+            - containerPort: 8089
+              name: loc-master-web
+              protocol: TCP
+            - containerPort: 5557
+              name: loc-master-p1
+              protocol: TCP
+            - containerPort: 5558
+              name: loc-master-p2
+              protocol: TCP
           envFrom:
             - configMapRef:
                 name: configmap-master
 
----
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: deployment-{{ .Values.Common.MasterGeneratorName }}
-  namespace: {{ .Values.Common.NameSpace }}
-  labels:
-    app: {{ .Values.Common.MasterGeneratorName }}
-spec:
-  replicas: {{ .Values.Deployment.MasterReplicas }}
-  selector:
-    matchLabels:
-      app: {{ .Values.Common.MasterGeneratorName }}
-  template:
-    metadata:
-      labels:
-        app: {{ .Values.Common.MasterGeneratorName }}
-    spec:
-      containers:
-        - name: {{ .Values.Common.MasterGeneratorName }}
-          image: {{ .Values.imageName }}
-          ports:
-            - name: locust-master
-              containerPort: 5557
-#            - name: {{ .Values.Common.MasterPod2 }}
-#              containerPort: 5558
-          envFrom:
-            - configMapRef:
-                name: configmap-master
+#---
+#
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: deployment-{{ .Values.Common.MasterGeneratorName }}
+#  namespace: {{ .Values.Common.NameSpace }}
+#  labels:
+#    app: {{ .Values.Common.MasterGeneratorName }}
+#spec:
+#  replicas: {{ .Values.Deployment.MasterReplicas }}
+#  selector:
+#    matchLabels:
+#      app: {{ .Values.Common.MasterGeneratorName }}
+#  template:
+#    metadata:
+#      labels:
+#        app: {{ .Values.Common.MasterGeneratorName }}
+#    spec:
+#      containers:
+#        - name: {{ .Values.Common.MasterGeneratorName }}
+#          image: {{ .Values.imageName }}
+#          ports:
+#            - name: locust-master
+#              containerPort: 5557
+##            - name: {{ .Values.Common.MasterPod2 }}
+##              containerPort: 5558
+#          envFrom:
+#            - configMapRef:
+#                name: configmap-master
 
 #---
 #

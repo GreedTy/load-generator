@@ -22,11 +22,4 @@ spec:
               service:
                 name: service-{{ .Values.Common.MasterWebAdminName }}
                 port:
-                  number: 80
-          - path: /perf-master(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: service-{{ .Values.Common.MasterGeneratorName }}
-                port:
-                  number: 80
+                  number: 8089
