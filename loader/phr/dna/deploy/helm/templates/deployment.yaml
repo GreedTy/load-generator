@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-{{ .Values.Common.MasterWebAdminName }}
+  name: deployment-{{ .Values.Common.MasterGeneratorName }}
   namespace: {{ .Values.Common.NameSpace }}
   labels:
-    app: {{ .Values.Common.MasterWebAdminName }}
+    app: {{ .Values.Common.MasterGeneratorName }}
 spec:
   replicas: {{ .Values.Deployment.MasterReplicas }}
   selector:
     matchLabels:
-      app: {{ .Values.Common.MasterWebAdminName }}
+      app: {{ .Values.Common.MasterGeneratorName }}
   template:
     metadata:
       labels:
-        app: {{ .Values.Common.MasterWebAdminName }}
+        app: {{ .Values.Common.MasterGeneratorName }}
     spec:
       containers:
-        - name: {{ .Values.Common.MasterWebAdminName }}
+        - name: {{ .Values.Common.MasterGeneratorName }}
           image: {{ .Values.imageName }}
           ports:
             - containerPort: 8089

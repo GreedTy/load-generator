@@ -18,5 +18,5 @@ spec:
       protocol: TCP
       targetPort: 8089
   selector:
-    app.kubernetes.io/name: {{ .Values.Common.MasterWebAdminName }}
+    app.kubernetes.io/name: {{ .Values.Common.MasterGeneratorName }}
   type: ClusterIP
