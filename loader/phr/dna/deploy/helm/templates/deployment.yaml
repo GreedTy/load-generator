@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-{{ .Values.Common.MasterGeneratorName }}
+  name: {{ .Values.Common.MasterGeneratorName }}
   namespace: {{ .Values.Common.NameSpace }}
   labels:
     app: {{ .Values.Common.MasterGeneratorName }}
@@ -15,78 +15,55 @@ spec:
     metadata:
       labels:
         app: {{ .Values.Common.MasterGeneratorName }}
+        app.kubernetes.io/name: {{ .Values.Common.MasterGeneratorName }}
     spec:
       containers:
         - name: {{ .Values.Common.MasterGeneratorName }}
           image: {{ .Values.imageName }}
           ports:
             - containerPort: 8089
-              name: loc-master-web
+              name: {{ .Values.Common.WebDashBoardPod }}
               protocol: TCP
             - containerPort: 5557
-              name: loc-master-p1
+              name: {{ .Values.Common.MasterPod1 }}
               protocol: TCP
             - containerPort: 5558
-              name: loc-master-p2
+              name: {{ .Values.Common.MasterPod2 }}
               protocol: TCP
           envFrom:
             - configMapRef:
                 name: configmap-master
+#          readinessProbe:
+#            initialDelaySeconds: 5
+#            periodSeconds: 30
+#            timeoutSeconds: 30
+#            failureThreshold: 2
+#            httpGet:
+#              path: /
+#              port: 8089
 
-#---
-#
-#apiVersion: apps/v1
-#kind: Deployment
-#metadata:
-#  name: deployment-{{ .Values.Common.MasterGeneratorName }}
-#  namespace: {{ .Values.Common.NameSpace }}
-#  labels:
-#    app: {{ .Values.Common.MasterGeneratorName }}
-#spec:
-#  replicas: {{ .Values.Deployment.MasterReplicas }}
-#  selector:
-#    matchLabels:
-#      app: {{ .Values.Common.MasterGeneratorName }}
-#  template:
-#    metadata:
-#      labels:
-#        app: {{ .Values.Common.MasterGeneratorName }}
-#    spec:
-#      containers:
-#        - name: {{ .Values.Common.MasterGeneratorName }}
-#          image: {{ .Values.imageName }}
-#          ports:
-#            - name: locust-master
-#              containerPort: 5557
-##            - name: {{ .Values.Common.MasterPod2 }}
-##              containerPort: 5558
-#          envFrom:
-#            - configMapRef:
-#                name: configmap-master
+---
 
-#---
-#
-## locust worker
-#apiVersion: apps/v1
-#kind: Deployment
-#metadata:
-#  name: {{ .Values.Common.WorkerName }}
-#  namespace: {{ .Values.Common.NameSpace }}
-#  labels:
-#    name: {{ .Values.Common.WorkerName }}
-#spec:
-#  replicas: {{ .Values.Deployment.WorkerReplicas }}
-#  selector:
-#    matchLabels:
-#      app: {{ .Values.Common.WorkerName }}
-#  template:
-#    metadata:
-#      labels:
-#        app: {{ .Values.Common.WorkerName }}
-#    spec:
-#      containers:
-#        - name: {{ .Values.Common.WorkerName }}
-#          image: {{ .Values.imageName }}
-#          envFrom:
-#            - configMapRef:
-#                name: configmap-worker
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.Common.WorkerGeneratorName }}
+  namespace: {{ .Values.Common.NameSpace }}
+  labels:
+    name: {{ .Values.Common.WorkerGeneratorName }}
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: {{ .Values.Common.WorkerGeneratorName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.Common.WorkerGeneratorName }}
+    spec:
+      containers:
+        - name: {{ .Values.Common.WorkerGeneratorName }}
+          image: {{ .Values.imageName }}
+          envFrom:
+            - configMapRef:
+                name: configmap-worker

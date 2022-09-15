@@ -4,10 +4,11 @@ deployVersion: v1.0.0
 Common:
   ServiceName: load-generator
   MasterGeneratorName: locust-master
-  MasterPod1: locust-master-1
-  MasterPod2: locust-master-2
-  MasterWebAdminName: locust-web
-  WorkerName: locust-worker
+  WorkerGeneratorName: locust-worker
+  WebDashBoardPod: locust-dashboard
+  MasterPod1: locust-m1
+  MasterPod2: locust-m2
+  MasterWebDashBoardName: locust-dashboard
   NameSpace: load-gen
 #  Datadog:
 #    UnifiedServiceTag: hb-phr.phr-dna

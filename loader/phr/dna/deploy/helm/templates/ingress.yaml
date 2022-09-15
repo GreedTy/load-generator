@@ -4,22 +4,22 @@ metadata:
   name: ingress-{{ .Values.Common.ServiceName }}
   namespace: {{ .Values.Common.NameSpace }}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /perf-admin/$2
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: {{ .Values.Ingress.IngressClassName }}
   defaultBackend:
     service:
-      name: service-{{ .Values.Common.MasterWebAdminName }}
+      name: service-{{ .Values.Common.MasterWebDashBoardName }}
       port:
         number: 8089
   rules:
     - http:
         paths:
           # locust-web
-          - path: /perf-admin(/|$)(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: service-{{ .Values.Common.MasterWebAdminName }}
+                name: service-{{ .Values.Common.MasterWebDashBoardName }}
                 port:
                   number: 8089
