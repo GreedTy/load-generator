@@ -5,10 +5,10 @@ Common:
   ServiceName: load-generator
   MasterGeneratorName: locust-master
   WorkerGeneratorName: locust-worker
-  WebDashBoardPod: locust-dashboard
+  WebDashBoardPod: dashboard
   MasterPod1: locust-m1
   MasterPod2: locust-m2
-  MasterWebDashBoardName: locust-dashboard
+  MasterWebDashBoardName: dashboard
   NameSpace: load-gen
 #  Datadog:
 #    UnifiedServiceTag: hb-phr.phr-dna
