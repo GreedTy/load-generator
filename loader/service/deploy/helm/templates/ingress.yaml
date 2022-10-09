@@ -11,7 +11,7 @@ spec:
     service:
       name: service-{{ .Values.Common.MasterWebDashBoardName }}
       port:
-        number: 8089
+        number: 9999
   rules:
     - http:
         paths:
@@ -22,4 +22,4 @@ spec:
               service:
                 name: service-{{ .Values.Common.MasterWebDashBoardName }}
                 port:
-                  number: 8089
+                  number: 9999

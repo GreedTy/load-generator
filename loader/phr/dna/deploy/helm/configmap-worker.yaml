@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  namespace: {{ .Values.Common.NameSpace }}
-  name: configmap-worker
-data:
-  TARGET_HOST: http://lb-perf-locust-web-0e2ba257cfc2fb0f.elb.ap-northeast-2.amazonaws.com/perf-master
-  LOCUST_MASTER: deployment-locust-master
-  LOCUST_MODE: worker
