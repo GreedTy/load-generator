@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: 'hb-commons/argocd-deploy'
-          token: ${{ secrets.ACTION_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           path: 'argocd-deploy'
           fetch-depth: 0
 
@@ -59,8 +59,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.ECR_DEPLOY_USER_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.ECR_DEPLOY_USER_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.ECR_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ECR_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
       - name: Login to Amazon ECR
