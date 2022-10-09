@@ -15,8 +15,3 @@
 - [ ] CI related changes
 - [ ] Documentation content changes
 - [ ] Other... Please describe:
-
-## 무엇을 하였는가?
-test
-## 무엇을 중점적으로 봐줬으면 좋겠는가?
-test
